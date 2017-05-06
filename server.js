@@ -4,6 +4,7 @@ var app 		= express();
 var bodyParser 	= require('body-parser');
 var mongoose	= require('mongoose');
 
+//connect to database here. 27017 is the default port for mongo
 mongoose.connect('localhost:27017', (error) => {
 	if (error) {
 		console.error('make sure mongodb is installed and running!');
@@ -14,6 +15,7 @@ mongoose.connect('localhost:27017', (error) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+//port can be overwritten here
 var port = process.env.PORT || 8080;
 
 //API routes
