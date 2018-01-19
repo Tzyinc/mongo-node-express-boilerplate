@@ -1,18 +1,18 @@
- var express 	= require('express');
- var router 	= express.Router();
+ let express = require('express');
+ let router = express.Router();
 
 router.get('/', function(req, res) {
-	res.json({ message: 'API entry point is /api/<object>'})
+  res.json({message: 'API entry point is /api/<object>'});
 });
-//for every new schema, write routes for them
-//import functions from controller file
-var exampleController = require('../controllers/example.controller.js');
-//routes for each function
-router.route('/example').post(exampleController.createExample);
-router.route('/example').get(exampleController.retrieveAllExample);
-//routes using id in the url
-router.route('/example/:example_id').get(exampleController.retrieveOneExample);
-router.route('/example/:example_id').post(exampleController.updateExample);
-router.route('/example/:example_id').delete(exampleController.deleteExample);
 
+let userController = require('../controllers/user.controller.js');
+router.route('/userlogin').post(userController.login);
+
+let eventController = require('../controllers/event.controller.js');
+router.route('/content').get(eventController.getContent);
+router.route('/content/:content_id').get(eventController.getOneEvent);
+router.route('/like/:content_id').get(eventController.setOneEventLike);
+router.route('/going/:content_id').get(eventController.setOneEventGoing);
+router.route('/contentComment/:content_id').post(eventController.addNewComment);
+router.route('/getUserContent').get(eventController.getUserContent);
 module.exports = router;
